@@ -28,11 +28,6 @@ class Tournament {
     return this.add_team_help(ranking, (ranking - 1).gray_code);
   }
   
-  rounds() {
-    if (!this.left && this.left !== 0)  return 0;
-    else                                return 1 + (this.left.rounds().max(this.right.rounds()));
-  }
-  
   round(level){
     return this.round_help(this.rounds() - level);
   }
@@ -46,11 +41,18 @@ class Tournament {
     else                          this.right.add_team_help(ranking, gray_code >> 1);
   }
   
+  /*
+  rounds() {
+    if (!this.left && this.left !== 0)  return 0;
+    else                                return 1 + (this.left.rounds().max(this.right.rounds()));
+  }
+  
   round_help(reverse_level){
     if      (!this.left && this.left !== 0) return [[this.ranking, `bye`]];
     else if (reverse_level === 0)           return [[this.left.ranking, this.right.ranking]];
     else                                    return  this.left.round_help(reverse_level - 1) +
                                                     this.right.round_help(reverse_level - 1)
   }
+  */
 }
 
