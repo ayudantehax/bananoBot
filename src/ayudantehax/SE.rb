@@ -199,3 +199,7 @@ if ARGV.length != 1
   $stderr.puts "Usage: #{$0} team-count"
   exit 1
 end
+  
+tournament = Tournament.create(ARGV[0].to_i)
+
+puts tournament
