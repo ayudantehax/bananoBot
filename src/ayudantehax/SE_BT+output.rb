@@ -13,8 +13,10 @@ class Numeric
   # A monkey-patched convenience method to compute the maximum of two
   # numbers.
   def max(other)
-    if self >= other : self
-    else other
+    if self >= other
+      self
+    else
+      other
     end
   end
 end
@@ -63,8 +65,10 @@ class Tournament
   # Returns the number of rounds in the tournament.  This is determined by
   # taking the max of the depths of the two sub-trees and adding one.
   def rounds
-    unless @left : 0
-    else 1 + (@left.rounds.max(@right.rounds))
+    unless @left
+      0
+    else
+      1 + (@left.rounds.max(@right.rounds))
     end
   end
 
@@ -130,10 +134,13 @@ class Tournament
   # zero.  It can be the case where a given branch does not have
   # enough levels; that indicates a "bye" for a good-ranking team.
   def round_help(reverse_level)
-    if @left == nil : [[@ranking, "bye"]]
-    elsif reverse_level == 0 : [[@left.ranking, @right.ranking]]
-    else @left.round_help(reverse_level - 1) +
-        @right.round_help(reverse_level - 1)
+    if @left == nil
+      [[@ranking, "bye"]]
+    elsif reverse_level == 0
+      [[@left.ranking, @right.ranking]]
+    else
+      @left.round_help(reverse_level - 1) +
+      @right.round_help(reverse_level - 1)
     end
   end
 
@@ -195,13 +202,8 @@ class Tournament
     end
   end
 end
-
-
-if ARGV.length != 1
-  $stderr.puts "Usage: #{$0} team-count"
-  exit 1
-end
   
-tournament = Tournament.create(ARGV[0].to_i)
-
+tournament = Tournament.create(teams)
 puts tournament
+# puts tournament.inspect
+  
