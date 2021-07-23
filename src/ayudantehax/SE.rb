@@ -20,9 +20,7 @@ end
 
 class Integer
   # A monkey-patched method to compute the gray code of an integer.
-The
-  # gray code has properties that make it helpful to the tournament
-problem.
+  # The gray code has properties that make it helpful to the tournament problem.
   def gray_code
     self ^ (self >> 1)
   end
@@ -53,17 +51,14 @@ class Tournament
   end
 
   # Adds a team with the given ranking to the tournament.  It turns out
-  # that the gray code of the ranking-1 has a bit pattern that
-conveniently
-  # helps us descend the binary tree to the appropriate place at which
-to
+  # that the gray code of the ranking-1 has a bit pattern that conveniently
+  # helps us descend the binary tree to the appropriate place at which to
   # put the team.
   def add_team(ranking)
     add_team_help(ranking, (ranking - 1).gray_code)
   end
 
-  # Returns the number of rounds in the tournament.  This is determined
-by
+  # Returns the number of rounds in the tournament.  This is determined by
   # taking the max of the depths of the two sub-trees and adding one.
   def rounds
     unless @left : 0
@@ -72,8 +67,7 @@ by
   end
 
   # Returns the pairs playing at a given round.  A round number of 1 is
-  # the first round played and therefore the bottom-most layer of the
-tree.
+  # the first round played and therefore the bottom-most layer of the tree.
   def round(level)
     round_help(rounds - level)
   end
@@ -141,8 +135,7 @@ tree.
     end
   end
 
-  # Creates a simple pair of lines showing the round numbers; this
-helps
+  # Creates a simple pair of lines showing the round numbers; this helps
   # in the interpretation of the text-tree below.
   def header_string
     result = (1..rounds).to_a.inject("") do |collect, round|
