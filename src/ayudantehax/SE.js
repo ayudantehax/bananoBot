@@ -29,11 +29,11 @@ class Tournament {
   }
   
   add_team_help(ranking, gray_code) {
-    if (!this.left && this.left !== 0) {
+    if (this.left === undefined) {
       this.left   = new Tournament(this.ranking);
       this.right  = new Tournament(ranking);
     }
-    else if (gray_code % 2 === 0) this.left.add_team_help(ranking, gray_code >> 1);
+    else if (gray_code % 2 == 0) this.left.add_team_help(ranking, gray_code >> 1);
     else                          this.right.add_team_help(ranking, gray_code >> 1);
   }
   
