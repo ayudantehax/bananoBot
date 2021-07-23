@@ -1,3 +1,5 @@
+# http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/229068
+
 # Below you'll find my solution.  The code to create the binary tree is
 # pretty small.  The code to produce the text version of the tournament
 # tree is not so small, however.  Oh well...
