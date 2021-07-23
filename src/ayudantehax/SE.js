@@ -7,6 +7,6 @@ Number.prototype.max = function(other) {
 
 Number.prototype.toGrayCode = function() {
   let _this = this.valueOf();
-  if(!Number.isInteger(_this)) throw new Error();
+  if(!Number.isInteger(_this)) throw new Error(`unexpected number`);
   else return _this ^ (_this >> 1);
 }
