@@ -14,8 +14,6 @@ Number.prototype.gray_code = function() {
 class Tournament {
   constructor(ranking) {
     this.ranking = ranking;
-    this.left = null;
-    this.right = null;
   }
   
   static create(teams) {
@@ -31,7 +29,7 @@ class Tournament {
   }
   
   rounds() {
-    if (this.left === null) return 0;
+    if (!this.left)         return 0;
     else                    return 1 + (this.left.rounds().max(this.right.rounds()));
   }
   
@@ -40,7 +38,7 @@ class Tournament {
   }
   
   add_team_help(ranking, gray_code) {
-    if (this.left === null) {
+    if (!this.left) {
       this.left   = new Tournament(this.ranking);
       this.right  = new Tournament(ranking);
     }
@@ -49,9 +47,10 @@ class Tournament {
   }
   
   round_help(reverse_level){
-    if      (this.left === null)  return [[this.ranking, `bye`]];
+    if      (!this.left)          return [[this.ranking, `bye`]];
     else if (reverse_level === 0) return [[this.left.ranking, this.right.ranking]];
-    else                          return this.left.round_help(reverse_level - 1) + this.right.round_help(reverse_level - 1)
+    else                          return  this.left.round_help(reverse_level - 1) +
+                                          this.right.round_help(reverse_level - 1)
   }
 }
 
