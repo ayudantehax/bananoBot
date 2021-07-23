@@ -1,4 +1,4 @@
-
+/*
 class Match{
   constructor(){
     if      (arguments[0] instanceof Match)  this.home = () => arguments[0].winner; // previous match
@@ -9,6 +9,7 @@ class Match{
     this._branches  = arguments[3];
   }
 }
+*/
 
 // Ejemplo: generateRounds(generateSeedRound(totalRoundsOfTournament));
 
