@@ -60,14 +60,6 @@ class Tournament
     add_team_help(ranking, (ranking - 1).gray_code)
   end
 
-  # Returns the number of rounds in the tournament.  This is determined by
-  # taking the max of the depths of the two sub-trees and adding one.
-  def rounds
-    unless @left : 0
-    else 1 + (@left.rounds.max(@right.rounds))
-    end
-  end
-
   protected
 
   # Recursively descends the tree to place a team with a new ranking.
