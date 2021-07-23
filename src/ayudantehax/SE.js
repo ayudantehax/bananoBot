@@ -31,7 +31,7 @@ class Tournament {
   }
   
   rounds() {
-    if (this.left === null) return 0;
+    if (this.left !== null) return 0;
     else                    return 1 + (this.left.rounds().max(this.right.rounds()));
   }
   
