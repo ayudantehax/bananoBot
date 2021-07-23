@@ -203,7 +203,8 @@ class Tournament
   end
 end
   
-tournament = Tournament.create(teams)
-puts tournament
-# puts tournament.inspect
+# tournament = Tournament.create(teams)
   
+# puts tournament
+  
+# puts tournament.inspect
