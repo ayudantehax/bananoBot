@@ -28,8 +28,9 @@ class Tournament {
     return this.add_team_help(ranking, (ranking - 1).gray_code);
   }
   
-  round(level){
-    return this.round_help(this.rounds() - level);
+  rounds() {
+    if (!this.left && this.left !== 0)  return 0;
+    else                                return 1 + (this.left.rounds().max(this.right.rounds()));
   }
   
   add_team_help(ranking, gray_code) {
@@ -42,9 +43,9 @@ class Tournament {
   }
   
   /*
-  rounds() {
-    if (!this.left && this.left !== 0)  return 0;
-    else                                return 1 + (this.left.rounds().max(this.right.rounds()));
+  
+  round(level){
+    return this.round_help(this.rounds() - level);
   }
   
   round_help(reverse_level){
