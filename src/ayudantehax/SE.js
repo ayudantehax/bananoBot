@@ -13,16 +13,17 @@ Number.prototype.gray_code = function() {
 
 class Tournament {
   constructor(ranking) {
+    this.ranking = ranking;
     this.left = null;
     this.right = null;
-    this.ranking = ranking;
-    this.create = function(teams){
-      let head_node = new Tournament(1);
-      for (let ranking = 2; ranking <= teams; ranking++) {
-        head_node.add_team(ranking);
-      }
-      return head_node;
+  }
+  
+  static create(teams) {
+    let head_node = new Tournament(1);
+    for (let ranking = 2; ranking <= teams; ranking++) {
+      head_node.add_team(ranking);
     }
+    return head_node;
   }
   
   add_team(ranking) {
@@ -53,3 +54,4 @@ class Tournament {
     else                          return this.left.round_help(reverse_level - 1) + this.right.round_help(reverse_level - 1)
   }
 }
+
