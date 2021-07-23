@@ -1,7 +1,8 @@
 
 Number.prototype.max = function(other) {
+  let _this = this.valueOf();
   if(typeof other !== `number`) throw new Error(`unexpected parameter`);
-  else return (this >= other && this.valueOf()) || other;
+  else return (_this >= other && _this) || other;
 }
 
 Number.prototype.toGrayCode = function() {
