@@ -1,3 +1,4 @@
+
 Number.prototype.gray_code = function() {
   let _this = this.valueOf();
   if (!Number.isInteger(_this)) throw new Error(`unexpected number`);
