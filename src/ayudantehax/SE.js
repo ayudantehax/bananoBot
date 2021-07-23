@@ -26,9 +26,9 @@ class Tournament {
   }
   
   add_team(ranking) {
-    return this.add_team_help(ranking, (ranking - 1).gray_code);
     console.log(ranking);
     console.log((ranking - 1).gray_code);
+    return this.add_team_help(ranking, (ranking - 1).gray_code);
   }
   
   add_team_help(ranking, gray_code) {
