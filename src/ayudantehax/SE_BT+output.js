@@ -73,14 +73,10 @@ class Tournament {
     
     // create the lowest layer of the tree representing the first round
     for (let game of this.round(1)) {
-      console.log(game[0]);
-      console.log(game[0].toString());
-      console.log(game[0].toString().rjust(3));
       lines.push(game[0].toString().rjust(3));
       lines.push(`---`);
       lines.push(`   `);
       lines.push(`---`);
-      console.log(game[1]);
       lines.push(game[1].toString().rjust(3));
       lines.push(`   `);
     }
@@ -142,7 +138,7 @@ class Tournament {
     let count   = 0,
         connect = false;
     for (let line of lines) {
-      if (line[-1] === `-`){
+      if (line.charAt(line.length - 1) === `-`){
         line.push(`+`);
         connect = !connect;
         if (connect) count++;
@@ -159,10 +155,10 @@ class Tournament {
   _to_s_branch(lines) {
     let range_began = false;
     lines.forEach((v,i) => {
-      if(lines[i][-1] === `|` && range_began === false)
+      if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false)
         range_began = i;
       else if (range_began !== false) {
-        lines[(i + range_began - 1)/2][-1] = "+";
+        lines[(i + range_began - 1)/2].charAt(lines[(i + range_began - 1)/2].length - 1) = "+";
         range_began = false;
       }
     });
