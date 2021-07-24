@@ -1,4 +1,13 @@
 
+String.prototype.rjust = function ( string, width, padding ) {
+	padding = padding || " ";
+	padding = padding.substr( 0, 1 );
+	if ( string.length < width )
+		return padding.repeat( width - string.length ) + string;
+	else
+		return string;
+}
+
 // A monkey-patched convenience method to compute the maximum of two
 // numbers.
 Number.prototype.max = function(other) {
@@ -54,8 +63,14 @@ class Tournament {
   
   // Returns the pairs playing at a given round.  A round number of 1 is
   // the first round played and therefore the bottom-most layer of the tree.
-  round(level){
+  round(level) {
     return this._round_help(this.rounds() - level);
+  }
+  
+  to_s() {
+    let lines = [];
+    for (let game in this.round(1)) {
+    }
   }
   
   /* * * private * * */
@@ -85,7 +100,7 @@ class Tournament {
   // rounds.  That way we know we're at the right level when it reaches
   // zero.  It can be the case where a given branch does not have
   // enough levels; that indicates a "bye" for a good-ranking team.
-  _round_help(reverse_level){
+  _round_help(reverse_level) {
     if      (this.left === undefined) return [[this.ranking, `bye`]];
     else if (reverse_level === 0)     return [[this.left.ranking, this.right.ranking]];
     else                              return  this.left._round_help(reverse_level - 1) +
