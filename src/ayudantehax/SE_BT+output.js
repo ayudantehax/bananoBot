@@ -72,8 +72,10 @@ class Tournament {
     let lines = []; // store the result as an array of lines initially
     
     // create the lowest layer of the tree representing the first round
-    for (let game in this.round(1)) {
-      console.log(this.round(1));
+    for (let game of this.round(1)) {
+      console.log(game[0]);
+      console.log(game[0].toString());
+      console.log(game[0].toString().rjust(3));
       lines.push(game[0].toString().rjust(3));
       lines.push(`---`);
       lines.push(`   `);
@@ -139,7 +141,7 @@ class Tournament {
   _to_s_connect(lines) {
     let count   = 0,
         connect = false;
-    for (let line in lines) {
+    for (let line of lines) {
       if (line[-1] === `-`){
         line.push(`+`);
         connect = !connect;
@@ -168,7 +170,7 @@ class Tournament {
   
   // Extends the horizontal lines by one character.
   _to_s_extend(lines) {
-    for (let line in lines) {
+    for (let line of lines) {
       if (line.match(/(-| \+)$/))
         line.push(`-`);
       else
