@@ -8,10 +8,6 @@ String.prototype.rjust = function(width, padding) {
     return this.toString();
 };
 
-String.prototype.replaceAt = function(index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-}
-
 // A monkey-patched convenience method to compute the maximum of two
 // numbers.
 Number.prototype.max = function(other) {
