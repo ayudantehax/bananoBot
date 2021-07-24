@@ -1,11 +1,11 @@
-String.prototype.rjust = function(string, width, padding) {
+String.prototype.rjust = function(width, padding) {
   padding = padding || " ";
-  padding = padding.substr(0, 1);
-  if (string.length < width)
-    return padding.repeat(width - string.length) + string;
+  padding = padding.substr(0, 1); /* www .  jav a 2  s. co m*/
+  if (this.length < width)
+    return padding.repeat(width - this.length) + this;
   else
-    return string;
-}
+    return this.toString();
+};
 
 // A monkey-patched convenience method to compute the maximum of two
 // numbers.
