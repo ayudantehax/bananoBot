@@ -8,6 +8,10 @@ String.prototype.rjust = function(width, padding) {
     return this.toString();
 };
 
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+}
+
 // A monkey-patched convenience method to compute the maximum of two
 // numbers.
 Number.prototype.max = function(other) {
@@ -88,11 +92,9 @@ class Tournament {
     let counter;
     do {
       counter = this._to_s_connect(lines);
-      console.log(`counter`);
-      console.log(counter);
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
-    } while(counter === 1);
+    } while(counter !== 1);
     
     return /*this._header_string() +*/ lines.join("\n");
   }
@@ -139,15 +141,15 @@ class Tournament {
   _to_s_connect(lines) {
     let count   = 0,
         connect = false;
-    for (let line of lines) {
-      if (line.charAt(line.length - 1) === `-`){
-        line += `+`;
+    lines.forEach((v, i) => {
+      if(lines[i].charAt(lines[i].length - 1) === `-`){
+        lines[i] += `+`;
         connect = !connect;
         if (connect) count++;
       }
-      else if (connect) line += `|`;
-      else              line += ` `;
-    }
+      else if (connect) lines[i] += `|`;
+      else              lines[i] += ` `;
+    });
     return count;
   }
   
@@ -161,7 +163,7 @@ class Tournament {
       if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false)
         range_began = i;
       else if (range_began !== false) {
-        lines[(i + range_began - 1)/2][lines[(i + range_began - 1)/2].length - 1] = "+";
+        lines[(i + range_began - 1)/2].replaceAt(lines[(i + range_began - 1)/2].length - 1, `+`);
         range_began = false;
       }
     });
@@ -169,11 +171,11 @@ class Tournament {
   
   // Extends the horizontal lines by one character.
   _to_s_extend(lines) {
-    for (let line of lines) {
-      if (line.match(/(-| \+)$/))
-        line = line + `-`;
+    lines.forEach((v, i) => {
+      if (lines[i].match(/(-| \+)$/))
+        lines[i] += `-`;
       else
-        line = line + ` `;
-    }
+        lines[i] += ` `;
+    });
   }
 }
