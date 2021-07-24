@@ -132,12 +132,20 @@ class Tournament {
               this.right._round_help(reverse_level - 1)
   }
   
+  // From the vertical lines used to represent a game, this places a
+  // horizontal line in the *middle* of it which indicates the winning
+  // team.  Except for the final round, these horizontal lines will be
+  // used to create a game at the next round.
   _to_s_branch(lines) {
     let range_began = false;
     lines.forEach((v,i) => {
-      if(lines[i][-1, 1]) /* que es eso*/;
+      if(lines[i][-1] === `|` && range_began === false)
+        range_began = i;
+      else if (range_began !== false){
+        lines[(i + range_began - 1)/2][-1] = "+";
+        range_began = false;
+      }
     });
-    
   }
   
   // Extends the horizontal lines by one character.
