@@ -139,12 +139,12 @@ class Tournament {
         connect = false;
     for (let line of lines) {
       if (line.charAt(line.length - 1) === `-`){
-        line.push(`+`);
+        line = line + `+`;
         connect = !connect;
         if (connect) count++;
       }
-      else if (connect) line.push(`|`);
-      else              line.push(` `);
+      else if (connect) line = line + `|`;
+      else              line = line + ` `;
     }
   }
   
@@ -158,7 +158,7 @@ class Tournament {
       if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false)
         range_began = i;
       else if (range_began !== false) {
-        lines[(i + range_began - 1)/2].charAt(lines[(i + range_began - 1)/2].length - 1) = "+";
+        lines[(i + range_began - 1)/2].[lines[(i + range_began - 1)/2].length - 1] = "+";
         range_began = false;
       }
     });
@@ -168,9 +168,9 @@ class Tournament {
   _to_s_extend(lines) {
     for (let line of lines) {
       if (line.match(/(-| \+)$/))
-        line.push(`-`);
+        line = line + `-`;
       else
-        line.push(` `);
+        line = line + ` `;
     }
   }
 }
