@@ -73,10 +73,12 @@ class Tournament {
     
     // create the lowest layer of the tree representing the first round
     for (let game in this.round(1)) {
+      console.log(this.round(1));
       lines.push(game[0].toString().rjust(3));
       lines.push(`---`);
       lines.push(`   `);
       lines.push(`---`);
+      console.log(game[1]);
       lines.push(game[1].toString().rjust(3));
       lines.push(`   `);
     }
