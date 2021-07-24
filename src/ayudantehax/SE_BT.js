@@ -34,8 +34,10 @@ class Tournament {
   // helps us descend the binary tree to the appropriate place at which to
   // put the team.
   add_team(ranking) {
-    return this.add_team_help(ranking, (ranking - 1).gray_code());
+    return this.#add_team_help(ranking, (ranking - 1).gray_code());
   }
+  
+  /* * * private * * */
   
   // Recursively descends the tree to place a team with a new ranking.
   // Ultimately it will create two new nodes and insert them into the
@@ -43,7 +45,7 @@ class Tournament {
   // descending the three, the bits in the gray code of the ranking
   // from least-significant to most-significant indicate which branch
   // to take.
-  add_team_help(ranking, gray_code) {
+  #add_team_help(ranking, gray_code) {
     if (this.left === undefined) {
       // bottomed out; create two new nodes
       this.left   = new Tournament(this.ranking);
@@ -51,9 +53,9 @@ class Tournament {
     }
     else if (gray_code % 2 == 0)
       // bit in gray code indicates the left branch
-      this.left.add_team_help(ranking, gray_code >> 1);
+      this.left.#add_team_help(ranking, gray_code >> 1);
     else
       // bit in gray code indicates the right branch
-      this.right.add_team_help(ranking, gray_code >> 1);
+      this.right.#add_team_help(ranking, gray_code >> 1);
   }
 }
