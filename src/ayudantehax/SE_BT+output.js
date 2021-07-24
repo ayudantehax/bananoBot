@@ -92,7 +92,7 @@ class Tournament {
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
     } while(counter === 1);
     
-    return this._header_string() + lines.join("\n");
+    return /*this._header_string() +*/ lines.join("\n");
   }
 
   /* * * private * * */
@@ -129,7 +129,21 @@ class Tournament {
       return [[this.left.ranking, this.right.ranking]];
     else 
       return  this.left._round_help(reverse_level - 1) +
-              this.right._round_help(reverse_level - 1)
+              this.right._round_help(reverse_level - 1);
+  }
+  
+  _to_s_connect(lines) {
+    let count   = 0,
+        connect = false;
+    for (let line in lines) {
+      if (line[-1] === `-`){
+        line.push(`+`);
+        connect = !connect;
+        if (connect) count++;
+      }
+      else if (connect) line.push(`|`);
+      else              line.push(` `);
+    }
   }
   
   // From the vertical lines used to represent a game, this places a
@@ -141,7 +155,7 @@ class Tournament {
     lines.forEach((v,i) => {
       if(lines[i][-1] === `|` && range_began === false)
         range_began = i;
-      else if (range_began !== false){
+      else if (range_began !== false) {
         lines[(i + range_began - 1)/2][-1] = "+";
         range_began = false;
       }
