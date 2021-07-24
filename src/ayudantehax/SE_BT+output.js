@@ -1,3 +1,4 @@
+
 String.prototype.rjust = function(width, padding) {
   padding = padding || " ";
   padding = padding.substr(0, 1); /* www .  jav a 2  s. co m*/
@@ -129,6 +130,14 @@ class Tournament {
     else 
       return  this.left._round_help(reverse_level - 1) +
               this.right._round_help(reverse_level - 1)
+  }
+  
+  _to_s_branch(lines) {
+    let range_began = false;
+    lines.forEach((v,i) => {
+      if(lines[i][-1, 1]) /* que es eso*/;
+    });
+    
   }
   
   // Extends the horizontal lines by one character.
