@@ -130,8 +130,10 @@ class Tournament {
     else if (reverse_level === 0) 
       return [[this.left.ranking, this.right.ranking]];
     else 
-      return  this.left._round_help(reverse_level - 1) +
-              this.right._round_help(reverse_level - 1);
+      return  this.left._round_help(reverse_level - 1)
+        .concat(
+              this.right._round_help(reverse_level - 1)
+      );
   }
   
   _to_s_connect(lines) {
