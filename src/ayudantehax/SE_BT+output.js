@@ -42,7 +42,7 @@ class Tournament {
   // helps us descend the binary tree to the appropriate place at which to
   // put the team.
   add_team(ranking) {
-    return this.#add_team_help(ranking, (ranking - 1).gray_code());
+    return this._add_team_help(ranking, (ranking - 1).gray_code());
   }
   
   // Returns the number of rounds in the tournament.  This is determined by
@@ -55,7 +55,7 @@ class Tournament {
   // Returns the pairs playing at a given round.  A round number of 1 is
   // the first round played and therefore the bottom-most layer of the tree.
   round(level){
-    return this.round_help(this.rounds() - level);
+    return this._round_help(this.rounds() - level);
   }
   
   /* * * private * * */
@@ -66,7 +66,7 @@ class Tournament {
   // descending the three, the bits in the gray code of the ranking
   // from least-significant to most-significant indicate which branch
   // to take.
-  #add_team_help(ranking, gray_code) {
+  _add_team_help(ranking, gray_code) {
     if (this.left === undefined) {
       c bottomed out; create two new nodes
       this.left   = new Tournament(this.ranking);
@@ -74,10 +74,10 @@ class Tournament {
     }
     else if (gray_code % 2 == 0)
       // bit in gray code indicates the left branch
-      this.left.#add_team_help(ranking, gray_code >> 1);
+      this.left._add_team_help(ranking, gray_code >> 1);
     else
       // bit in gray code indicates the right branch
-      this.right.#add_team_help(ranking, gray_code >> 1);
+      this.right._add_team_help(ranking, gray_code >> 1);
   }
   
   // Returns the teams playing at the given round level.  The parameter
@@ -85,11 +85,11 @@ class Tournament {
   // rounds.  That way we know we're at the right level when it reaches
   // zero.  It can be the case where a given branch does not have
   // enough levels; that indicates a "bye" for a good-ranking team.
-  #round_help(reverse_level){
+  _round_help(reverse_level){
     if      (this.left === undefined) return [[this.ranking, `bye`]];
     else if (reverse_level === 0)     return [[this.left.ranking, this.right.ranking]];
-    else                              return  this.left.#round_help(reverse_level - 1) +
-                                              this.right.#round_help(reverse_level - 1)
+    else                              return  this.left._round_help(reverse_level - 1) +
+                                              this.right._round_help(reverse_level - 1)
   }
 }
 
