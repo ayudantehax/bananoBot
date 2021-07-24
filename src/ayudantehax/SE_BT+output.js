@@ -88,6 +88,8 @@ class Tournament {
     let counter;
     do {
       counter = this._to_s_connect(lines);
+      console.log(`counter`);
+      console.log(counter);
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
     } while(counter === 1);
@@ -139,13 +141,14 @@ class Tournament {
         connect = false;
     for (let line of lines) {
       if (line.charAt(line.length - 1) === `-`){
-        line = line + `+`;
+        line += `+`;
         connect = !connect;
         if (connect) count++;
       }
-      else if (connect) line = line + `|`;
-      else              line = line + ` `;
+      else if (connect) line += `|`;
+      else              line += ` `;
     }
+    return count;
   }
   
   // From the vertical lines used to represent a game, this places a
