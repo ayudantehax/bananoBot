@@ -93,14 +93,28 @@ class Tournament {
     // do {
       counter = this._to_s_connect(lines);
       this._to_s_branch(lines);
+    
+      // console.log("lines");
+      // console.log([...lines]);
+    
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
+      
+      /*
+      console.log("lines");
+      console.log([...lines]);
     
       counter = this._to_s_connect(lines);
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
+    
+      console.log("lines");
+      console.log(lines);
+      
+      */
+    
     // } while(counter !== 1);
     
-    return /*this._header_string() +*/ lines.join("\n");
+    // return /*this._header_string() +*/ lines.join("\n");
   }
 
   /* * * private * * */
@@ -149,10 +163,13 @@ class Tournament {
       if(lines[i].charAt(lines[i].length - 1) === `-`){
         lines[i] += `+`;
         connect = !connect;
-        if (connect) count++;
+        if (connect === true) 
+          count++;
       }
-      else if (connect) lines[i] += `|`;
-      else              lines[i] += ` `;
+      else if (connect === true)
+        lines[i] += `|`;
+      else
+        lines[i] += ` `;
     });
     return count;
   }
@@ -164,10 +181,17 @@ class Tournament {
   _to_s_branch(lines) {
     let range_began = false;
     lines.forEach((v,i) => {
-      if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false)
-        range_began = i;
+      if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false){
+        console.log("=== `|`");
+        console.log(lines[i]);
+        console.log(lines[i].charAt(lines[i].length - 1));
+        range_began = i;}
       else if (range_began !== false) {
+        console.log("range_began !== false");
+        console.log(lines[(i + range_began - 1)/2]);
+        console.log(lines[(i + range_began - 1)/2][lines[(i + range_began - 1)/2].length - 1]);
         lines[(i + range_began - 1)/2].replaceAt(lines[(i + range_began - 1)/2].length - 1, `+`);
+        console.log(lines[(i + range_began - 1)/2][lines[(i + range_began - 1)/2].length - 1]);
         range_began = false;
       }
     });
