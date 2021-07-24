@@ -158,7 +158,7 @@ class Tournament {
       if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false)
         range_began = i;
       else if (range_began !== false) {
-        lines[(i + range_began - 1)/2].[lines[(i + range_began - 1)/2].length - 1] = "+";
+        lines[(i + range_began - 1)/2][lines[(i + range_began - 1)/2].length - 1] = "+";
         range_began = false;
       }
     });
