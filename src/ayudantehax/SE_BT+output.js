@@ -56,8 +56,8 @@ class Tournament {
   // Returns the number of rounds in the tournament.  This is determined by
   // taking the max of the depths of the two sub-trees and adding one.
   rounds() {
-    if (this.left === undefined) return 0;
-    else return 1 + (this.left.rounds().max(this.right.rounds()));
+    if (this.left === undefined)  return 0;
+    else                          return 1 + (this.left.rounds().max(this.right.rounds()));
   }
 
   // Returns the pairs playing at a given round.  A round number of 1 is
@@ -82,11 +82,11 @@ class Tournament {
   // to take.
   _add_team_help(ranking, gray_code) {
     if (this.left === undefined) {
-      c bottomed out;
-      create two new nodes
+      // bottomed out; create two new nodes
       this.left = new Tournament(this.ranking);
       this.right = new Tournament(ranking);
-    } else if (gray_code % 2 == 0)
+    } 
+    else if (gray_code % 2 == 0)
       // bit in gray code indicates the left branch
       this.left._add_team_help(ranking, gray_code >> 1);
     else
@@ -100,13 +100,12 @@ class Tournament {
   // zero.  It can be the case where a given branch does not have
   // enough levels; that indicates a "bye" for a good-ranking team.
   _round_help(reverse_level) {
-    if (this.left === undefined) return [
-      [this.ranking, `bye`]
-    ];
-    else if (reverse_level === 0) return [
-      [this.left.ranking, this.right.ranking]
-    ];
-    else return this.left._round_help(reverse_level - 1) +
-      this.right._round_help(reverse_level - 1)
+    if (this.left === undefined) 
+      return [[this.ranking, `bye`]];
+    else if (reverse_level === 0) 
+      return [[this.left.ranking, this.right.ranking]];
+    else 
+      return  this.left._round_help(reverse_level - 1) +
+              this.right._round_help(reverse_level - 1)
   }
 }
