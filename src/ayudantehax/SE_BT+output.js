@@ -65,11 +65,33 @@ class Tournament {
   round(level) {
     return this._round_help(this.rounds() - level);
   }
-
+  
+  // Converts the tournament tree into a String representation.
   to_s() {
-    let lines = [];
-    for (let game in this.round(1)) {}
-
+    let lines = []; // store the result as an array of lines initially
+    
+    // create the lowest layer of the tree representing the first round
+    for (let game in this.round(1)) {
+      lines.push(game[0].toString().rjust(3));
+      lines.push(`---`);
+      lines.push(`   `);
+      lines.push(`---`);
+      lines.push(game[1].toString().rjust(3));
+      lines.push(`   `);
+    }
+    lines.pop(); // last line, which just contains blanks, is not needed
+    
+    // the rest of the text tree is made through textual operations
+    // by connecting teams playing with veritcal lines, then branching
+    // horizontally to the next level, and then extending those branches
+    let counter;
+    do {
+      counter = this._to_s_connect(lines);
+      this._to_s_branch(lines);
+      for(let i = 0; i < 3; i++) this._to_s_extend(lines);
+    } while(counter === 1);
+    
+    return this._header_string() + lines.join("\n");
   }
 
   /* * * private * * */
@@ -107,5 +129,15 @@ class Tournament {
     else 
       return  this.left._round_help(reverse_level - 1) +
               this.right._round_help(reverse_level - 1)
+  }
+  
+  // Extends the horizontal lines by one character.
+  _to_s_extend(lines) {
+    for (let line in lines) {
+      if (line.match(/(-| \+)$/))
+        line.push(`-`);
+      else
+        line.push(` `);
+    }
   }
 }
