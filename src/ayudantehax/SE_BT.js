@@ -51,7 +51,7 @@ class Tournament {
       this.left   = new Tournament(this.ranking);
       this.right  = new Tournament(ranking);
     }
-    else if (gray_code % 2 == 0)
+    else if (gray_code % 2 === 0)
       // bit in gray code indicates the left branch
       this.left._add_team_help(ranking, gray_code >> 1);
     else
