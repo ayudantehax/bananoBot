@@ -86,15 +86,11 @@ class Tournament {
     // by connecting teams playing with veritcal lines, then branching
     // horizontally to the next level, and then extending those branches
     let counter;
-    // do {
+    do {
       counter = this._to_s_connect(lines);
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
-    
-      counter = this._to_s_connect(lines);
-      this._to_s_branch(lines);
-      for(let i = 0; i < 3; i++) this._to_s_extend(lines);
-    // } while(counter !== 1);
+    } while(counter !== 1);
     
     return /*this._header_string() +*/ lines.join("\n");
   }
