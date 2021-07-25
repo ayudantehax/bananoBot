@@ -134,6 +134,19 @@ class Tournament {
       );
   }
   
+  // Creates a simple pair of lines showing the round numbers; this helps
+  // in the interpretation of the text-tree below.
+  _header_string(){
+    let result = ``;
+    for (let round = 1; round <= this.rounds(); round++)
+      result += `R${round}`.center(4);
+    return result + "\n" + "=".repeat(result.length) + "\n";
+  }
+  
+  // Creates vertical lines used to indicate a game and that connect
+  // the horizontal lines that refer to teams.  The teams referred to
+  // are either from the first round or that have won the previous
+  // round.
   _to_s_connect(lines) {
     let count   = 0,
         connect = false;
