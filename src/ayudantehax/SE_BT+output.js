@@ -1,3 +1,4 @@
+
 String.prototype.rjust = function(width, padding) {
   padding = padding || " ";
   padding = padding.substr(0, 1); /* www .  jav a 2  s. co m*/
@@ -11,9 +12,9 @@ String.prototype.center = function(width, padding) {
   padding = padding || " ";
   padding = padding.substr(0, 1);
   if (this.length < width) {
-    var len = width - this.length;
-    var remain = len % 2 == 0 ? "" : padding;
-    var pads = padding.repeat(parseInt(len / 2));
+    var len     = width - this.length;
+    var remain  = len % 2 == 0 ? "" : padding;
+    var pads    = padding.repeat(parseInt(len / 2));
     return pads + this + pads + remain;
   } else
     return this.toString();
