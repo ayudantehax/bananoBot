@@ -12,22 +12,18 @@ Number.prototype.gray_code = function() {
 
 class Tournament {
   
-  constructor(ranking, game = 0, round = 0) {
+  constructor(ranking, round = 0) {
     this.ranking  = ranking;
     
-    if (game > 0 || round > 0) {
+    if (round > 0) {
       this.data = {};
-      if (game > 0) {
-        this.data.game  = game;
-        this.data.tmp   = game;
-      }
       if (round > 0)
         this.data.round = round;
     }
   }
   
   static create(teams) {
-    let head_node = new Tournament(1, teams - 1, calculateRounds(teams));
+    let head_node = new Tournament(1, calculateRounds(teams));
     
     for (let ranking = 2; ranking <= teams; ranking++) {
       head_node.add_team(ranking);
@@ -44,9 +40,8 @@ class Tournament {
   
   _add_team_help(ranking, gray_code) {
     if (this.left === undefined) {
-      this.left   = new Tournament(this.ranking,  this.data.tmp - 2 || undefined,  this.data.round - 1 || undefined);
-      this.right  = new Tournament(ranking,       this.data.tmp - 1 || undefined,  this.data.round - 1 || undefined);
-      if (this.data.tmp !== undefined) this.data.tmp -= 2;
+      this.left   = new Tournament(this.ranking,  this.data.round - 1 || undefined);
+      this.right  = new Tournament(ranking,       this.data.round - 1 || undefined);
     }
     else if (gray_code % 2 == 0)
       this.left._add_team_help(ranking, gray_code >> 1);
