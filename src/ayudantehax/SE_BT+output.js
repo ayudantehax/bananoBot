@@ -197,3 +197,7 @@ class Tournament {
     });
   }
 }
+
+let t = Tournament.create(4);
+
+t.to_s();
