@@ -91,9 +91,8 @@ class Tournament {
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
     
-      counter = this._to_s_connect(lines);
-      this._to_s_branch(lines);
-      for(let i = 0; i < 3; i++) this._to_s_extend(lines);
+      console.log("lines");
+      console.log(lines);
       
       /*
       console.log("lines");
@@ -110,7 +109,7 @@ class Tournament {
     
     // } while(counter !== 1);
     
-    return /*this._header_string() +*/ lines.join("\n");
+    // return /*this._header_string() +*/ lines.join("\n");
   }
 
   /* * * private * * */
