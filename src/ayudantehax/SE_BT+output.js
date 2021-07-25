@@ -163,8 +163,9 @@ class Tournament {
   _to_s_branch(lines) {
     let range_began = false;
     lines.forEach((v,i) => {
-      if(lines[i].charAt(lines[i].length - 1) === `|`)
+      if(lines[i].charAt(lines[i].length - 1) === `|`) {
         if(range_began === false) range_began = i;
+      }
       else if (range_began !== false) {
         lines[(i + range_began - 1) / 2] = lines[(i + range_began - 1) / 2].slice(0, -1);
         lines[(i + range_began - 1) / 2] += `+`;
