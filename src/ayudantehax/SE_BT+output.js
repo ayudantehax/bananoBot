@@ -91,25 +91,12 @@ class Tournament {
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
     
-      console.log("lines");
-      console.log(lines);
-      
-      /*
-      console.log("lines");
-      console.log([...lines]);
-    
       counter = this._to_s_connect(lines);
       this._to_s_branch(lines);
       for(let i = 0; i < 3; i++) this._to_s_extend(lines);
-    
-      console.log("lines");
-      console.log(lines);
-      
-      */
-    
     // } while(counter !== 1);
     
-    // return /*this._header_string() +*/ lines.join("\n");
+    return /*this._header_string() +*/ lines.join("\n");
   }
 
   /* * * private * * */
@@ -176,8 +163,8 @@ class Tournament {
   _to_s_branch(lines) {
     let range_began = false;
     lines.forEach((v,i) => {
-      if(lines[i].charAt(lines[i].length - 1) === `|` && range_began === false)
-        range_began = i;
+      if(lines[i].charAt(lines[i].length - 1) === `|`)
+        if(range_began === false) range_began = i;
       else if (range_began !== false) {
         lines[(i + range_began - 1) / 2] = lines[(i + range_began - 1) / 2].slice(0, -1);
         lines[(i + range_began - 1) / 2] += `+`;
