@@ -46,7 +46,7 @@ class Tournament {
     if (this.left === undefined) {
       this.left   = new Tournament(this.ranking,  this.data.tmp - 2 || undefined,  this.data.round - 1 || undefined);
       this.right  = new Tournament(ranking,       this.data.tmp - 1 || undefined,  this.data.round - 1 || undefined);
-      this.data.tmp -= 2;
+      if (this.data.tmp !== undefined) this.data.tmp -= 2;
     }
     else if (gray_code % 2 == 0)
       this.left._add_team_help(ranking, gray_code >> 1);
