@@ -43,7 +43,7 @@ class Tournament {
       this.left   = new Tournament(this.ranking,  this.data.round - 1 || undefined);
       this.right  = new Tournament(ranking,       this.data.round - 1 || undefined);
     }
-    else if (gray_code % 2 == 0)
+    else if (gray_code % 2 === 0)
       this.left._add_team_help(ranking, gray_code >> 1);
     else
       this.right._add_team_help(ranking, gray_code >> 1);
