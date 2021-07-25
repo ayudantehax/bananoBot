@@ -8,14 +8,6 @@ String.prototype.rjust = function(width, padding) {
     return this.toString();
 };
 
-// A monkey-patched convenience method to compute the maximum of two
-// numbers.
-Number.prototype.max = function(other) {
-  let _this = this.valueOf();
-  if (typeof other !== `number`) throw new Error(`unexpected parameter`);
-  else return (_this >= other && _this) || other;
-}
-
 // A monkey-patched method to compute the gray code of an integer.
 // The gray code has properties that make it helpful to the tournament problem.
 Number.prototype.gray_code = function() {
@@ -58,7 +50,7 @@ class Tournament {
   // taking the max of the depths of the two sub-trees and adding one.
   rounds() {
     if (this.left === undefined)  return 0;
-    else                          return 1 + (this.left.rounds().max(this.right.rounds()));
+    else                          return 1 + Math.max(this.left.rounds(), this.right.rounds());
   }
 
   // Returns the pairs playing at a given round.  A round number of 1 is
