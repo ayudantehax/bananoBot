@@ -197,3 +197,7 @@ class Tournament {
     });
   }
 }
+
+// let t = Tournament.create(teams);
+
+// t.to_s();
