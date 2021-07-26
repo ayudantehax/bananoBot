@@ -22,8 +22,4 @@ class Tournament {
     return calculateRounds(teams, _n + 1);
   }
   
-  static calculateFirstGames(teams){
-    let rounds = this.calculateRounds(teams);
-    
-  }
 }
