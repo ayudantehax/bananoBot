@@ -14,6 +14,7 @@ class Tournament {
     this.byes /*P*/   = Math.pow(2,this.rounds) - teams; // https://stackoverflow.com/a/22859838
     this.size         = {};
     this.size.rows    = (this.byes > 2) ? (Math.pow(2, this.rounds) - 1) : (Math.pow(2, this.rounds - 1) - 1);
+    // total de juegos en la primera ronda sin exenciones: '(Math.pow(2, this.rounds) / 2)'
     this.size.columns = (this.rounds + 1 /* columna de ganador */) * 2 - 1;
   }
   
