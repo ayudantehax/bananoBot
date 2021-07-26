@@ -24,7 +24,6 @@ class Tournament {
   
   static create(teams, type) {
     let tournament = new Tournament(teams);
-    tournament
     return tournament;
   }
   
