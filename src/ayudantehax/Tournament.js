@@ -22,4 +22,10 @@ class Tournament {
     return calculateRounds(teams, _n + 1);
   }
   
+  static create(teams, type) {
+    let tournament = new Tournament(teams);
+    tournament
+    return tournament;
+  }
+  
 }
