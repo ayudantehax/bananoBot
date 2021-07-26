@@ -13,7 +13,8 @@ class Tournament {
     this.rounds = Tournament.calculateRounds(teams); // añade uno si hay al menos una exención
     this.byes   = Math.pow(2,this.rounds) - teams; // https://stackoverflow.com/a/22859838 (es P)
     this.size   = {};
-    this.size.rows = this.byes !== 0 ? (this.byes > 2 ? a : teams - Math.pow(2,this.rounds) / 2) : teams - Math.pow(2,this.rounds) / 2;
+    // si hay más de 2 exenciones. entonces 
+    this.size.rows = (this.byes > 2) ? (Math.pow(2, this.rounds) / 2) : (Math.pow(2, this.rounds - 1) / 2);
     this.size.columns = this.rounds + 1; // + 1 (columna de ganador)
   }
   
